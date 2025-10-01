@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Portfolio Generator</title>
+  <meta name="description" content="Generate a complete portfolio website from your inputs with multiple professional templates."/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <a class="skip-link" href="#builder">Skip to form</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Home"><span class="brand-mark">◆</span> Your<span>Portfolio</span></a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="#builder">Builder</a></li>
+          <li><a href="#preview">Preview</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+        <button id="theme-toggle" class="theme-btn" title="Toggle light/dark" aria-label="Toggle theme">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">INTERACTIVE DIGITAL PORTFOLIO</p>
+        <h1>Create your Own portfolio in minutes</h1>
+        <p class="lead">Enter your academic & non-academic details, choose a template (Professional / Creative / Basic), then preview and export.</p>
+        <div class="hero-ctas">
+          <a class="btn" href="#builder">Start Building</a>
+          <a class="btn btn-ghost" href="#preview">See Preview</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-preview-mockup">
+          <div class="mockup-browser">
+            <div class="mockup-header">
+              <div class="mockup-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="mockup-content">
+              <div class="mockup-nav">Your Portfolio</div>
+              <div class="mockup-hero">Hi, I'm Your Name</div>
+              <div class="mockup-sections">
+                <div class="mockup-section"></div>
+                <div class="mockup-section"></div>
+                <div class="mockup-section"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container grid">
+    <section id="builder" class="card" aria-labelledby="inputs-title">
+      <h2 id="inputs-title">Portfolio Builder</h2>
+
+      <h3 class="section-title">Personal</h3>
+      <div class="row">
+        <label>Full Name
+          <input id="name" placeholder="Enter your name" required>
+        </label>
+        <label>Role/Title
+          <input id="role" placeholder="e.g., Frontend Developer | AIML Student">
+        </label>
+      </div>
+      <div class="row">
+        <label>Age <input id="age" type="number" min="8" max="100" placeholder="e.g., 21"></label>
+        <label>Location <input id="location" placeholder="e.g., Bengaluru, India"></label>
+      </div>
+      <div class="row">
+        <label>Email <input id="email" type="email" placeholder="you@example.com"></label>
+        <label>Phone <input id="phone" placeholder="+91-XXXXXXXXXX"></label>
+      </div>
+      <label>Short Summary / Objective
+        <textarea id="summary" placeholder="1–3 lines about you, interests, and goal."></textarea>
+      </label>
+      <label>Profile Photo (optional)
+        <div class="file-input-wrapper">
+          <input id="profileFile" type="file" accept="image/*">
+          <div class="file-input-display" onclick="document.getElementById('profileFile').click()">
+            Click to choose profile image...
+          </div>
+        </div>
+      </label>
+
+      <h3 class="section-title">Education (Academics)</h3>
+      <div id="eduList"></div>
+      <div class="actions"><button class="btn" id="addEdu">+ Add Education</button></div>
+
+      <h3 class="section-title">Certifications</h3>
+      <div id="certList"></div>
+      <div class="actions"><button class="btn" id="addCert">+ Add Certification</button></div>
+
+      <h3 class="section-title">Achievements (Academic / Non-Academic)</h3>
+      <div id="achList"></div>
+      <div class="actions"><button class="btn" id="addAch">+ Add Achievement</button></div>
+
+      <h3 class="section-title">Projects & Skills</h3>
+      <div id="projList"></div>
+      <div class="actions"><button class="btn" id="addProj">+ Add Project</button></div>
+      <label>Skills (comma separated)
+        <input id="skills" placeholder="HTML, CSS, JavaScript, Python">
+      </label>
+
+      <h3 class="section-title">Social / Links</h3>
+      <div class="row">
+        <label>GitHub <input id="github" placeholder="https://github.com/username"></label>
+        <label>LinkedIn <input id="linkedin" placeholder="https://linkedin.com/in/username"></label>
+      </div>
+      <label>Personal Website <input id="website" placeholder="https://yoursite.example"></label>
+
+      <h3 class="section-title">SEO & Sharing Metadata</h3>
+      <label>Meta Description (for search engines)
+          <textarea id="metaDesc" placeholder="Brief summary for search engines (max 150 characters)"></textarea>
+      </label>
+      <label>Social Sharing Image URL (for LinkedIn/Twitter preview)
+          <input id="ogImage" placeholder="https://yoursite.example/share-image.jpg">
+      </label>
+
+      <h3 class="section-title">Template</h3>
+      <div class="row3">
+        <label><input type="radio" name="theme" value="pro" checked> <strong>Professional</strong> – clean white, thin borders</label>
+        <label><input type="radio" name="theme" value="cre"> <strong>Creative</strong> – gradient header, accent blobs</label>
+        <label><input type="radio" name="theme" value="norm"> <strong>Basic</strong> – simple neutral cards, minimal</label>
+        <label><input type="radio" name="theme" value="custom" id="themeCustomRadio"> <strong>Custom Color</strong> – use your own primary color</label>
+        <label>Primary Accent Color <input type="color" id="customAccent" value="#7c5cff"></label>
+      </div>
+
+      <div class="actions" style="margin-top:12px">
+        <button class="btn" id="btnPreview">Generate Preview</button>
+        <button class="btn btn-ghost" id="btnDownloadHtml">Download HTML</button>
+        <button class="btn btn-ghost" id="btnDownloadPdf">Download PDF</button>
+        <button class="btn btn-ghost" id="btnShare">Copy Share Link</button>
+        <span id="status" class="muted"></span>
+      </div>
+    </section>
+
+    <section id="preview" class="preview theme-pro" aria-live="polite">
+      <header class="export-nav">
+        <a class="nav-brand" href="#about"><span class="brand-mark">◆</span> Your<span>Portfolio</span></a>
+        <nav aria-label="Portfolio sections">
+          <a href="#about" data-spy data-section="about">About</a>
+          <a href="#skills" data-spy data-section="skills">Skills</a>
+          <a href="#projects" data-spy data-section="projects">Projects</a>
+          <a href="#timeline" data-spy data-section="timeline">Timeline</a>
+          <a href="#contact" data-spy data-section="contact">Contact</a>
+        </nav>
+        <button id="portfolio-toggle" class="theme-btn" aria-label="Toggle portfolio theme">🌓</button>
+      </header>
+
+      <div class="export-hero">
+        <div class="export-hero-inner">
+          <div class="hero-left">
+            <h1>Hi, I'm <span id="pvName">Your Name</span></h1>
+            <p class="subtitle" id="pvRole">Role / Title</p>
+            <p class="lead" id="pvSummary">Short objective appears here.</p>
+            <div class="hero-cta">
+              <a href="#projects" class="btn">View Projects</a>
+              <a href="#contact" class="btn btn-ghost">Contact Me</a>
+            </div>
+            <p class="muted" id="pvContact">email • phone • location</p>
+          </div>
+          <div class="hero-right">
+            <div class="profile-frame big">
+              <img id="pvProfile" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='340' viewBox='0 0 340 340'%3E%3Crect width='340' height='340' fill='%23e2e8f0'/%3E%3Ctext x='170' y='180' font-family='Arial' font-size='24' text-anchor='middle' fill='%23718096'%3EProfile Photo%3C/text%3E%3C/svg%3E" alt="Profile">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap" id="preview-sections">
+        <section id="about" class="section sortable-section" data-order-id="about">
+          <h2 class="accent">About</h2>
+          <p class="muted">A short personal summary and highlights focused on impact and interests.</p>
+        </section>
+
+        <section id="skills" class="section sortable-section" data-order-id="skills">
+          <h2 class="accent">Skills</h2>
+          <div id="pvSkills" class="flex"></div>
+        </section>
+
+        <section id="projects" class="section sortable-section" data-order-id="projects">
+          <h2 class="accent">Projects</h2>
+          <div id="pvProj" class="grid2"></div>
+        </section>
+
+        <section id="timeline" class="section sortable-section" data-order-id="timeline">
+          <h2 class="accent">Timeline</h2>
+          <ol class="timeline">
+            <li><time>2023</time><p>Foundations in CS + AIML</p></li>
+            <li><time>2024</time><p>Internships & real-world projects</p></li>
+            <li><time>2025</time><p>Major project and portfolio refinement</p></li>
+          </ol>
+        </section>
+
+        <section id="contact" class="section sortable-section" data-order-id="contact">
+          <h2 class="accent">Contact</h2>
+          <div id="pvLinks" class="links"></div>
+        </section>
+
+        <section class="section sortable-section" data-order-id="education">
+          <h2 class="accent">Education</h2>
+          <div id="pvEdu"></div>
+        </section>
+
+        <section class="section sortable-section" data-order-id="certifications">
+          <h2 class="accent">Certifications</h2>
+          <div id="pvCert"></div>
+        </section>
+
+        <section class="section sortable-section" data-order-id="achievements" style="border-bottom:none">
+          <h2 class="accent">Achievements</h2>
+          <ul id="pvAch" class="list"></ul>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; <span id="year">2025</span> Portfolio Generator.</p></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
